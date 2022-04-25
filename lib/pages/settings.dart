@@ -33,7 +33,8 @@ class _SettingsPage extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return WillPopScope(
         onWillPop: () {
-          Navigator.of(context).pushReplacement(FadeRoute(page: BongoScene()));
+          Navigator.of(context).pushReplacement(
+              FadeRoute(page: BongoScene(themeNotifier: widget.themeNotifier)));
           return true as Future<bool>;
         },
         child: Scaffold(
@@ -84,8 +85,8 @@ class _SettingsPage extends State<SettingsPage> {
             floatingActionButton: IconButton(
               icon: Icon(Icons.chevron_left),
               onPressed: () {
-                Navigator.of(context)
-                    .pushReplacement(FadeRoute(page: BongoScene()));
+                Navigator.of(context).pushReplacement(FadeRoute(
+                    page: BongoScene(themeNotifier: widget.themeNotifier)));
               },
             )));
   }
@@ -113,7 +114,8 @@ class _SettingsPage extends State<SettingsPage> {
     });
     AlertDialog alert = AlertDialog(
       title: Text('Time'),
-      content: Column(mainAxisSize: MainAxisSize.min, children: list),
+      content: SingleChildScrollView(
+          child: Column(mainAxisSize: MainAxisSize.min, children: list)),
       actions: [
         cancelButton,
       ],
@@ -282,7 +284,6 @@ class _SettingsPage extends State<SettingsPage> {
       theme = text;
       if (THEMES[text]?.appTheme != null)
         widget.themeNotifier?.setTheme = THEMES[text]?.appTheme as ThemeData;
-      print(widget.themeNotifier?.theme.backgroundColor);
       setState(() {});
     }
   }
