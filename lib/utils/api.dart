@@ -29,7 +29,6 @@ class ApiManager {
     socket.asStream().listen((datagram) {
       if (datagram != null) {
         var str = String.fromCharCodes(datagram.data);
-        //print(str);
         result = str;
       }
     });

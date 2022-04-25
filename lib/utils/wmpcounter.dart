@@ -36,7 +36,6 @@ class WPMCounter {
         }
       }
     });
-    //print(string);
     return ((letters / 5) * 60 / seconds).round();
   }
 

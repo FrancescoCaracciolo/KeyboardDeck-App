@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:keyboard/pages/scene.dart';
+import 'package:keyboard/themes/ThemeNotifier.dart';
+import 'package:keyboard/themes/classic.dart';
 import 'package:keyboard/utils/api.dart';
 import 'package:keyboard/utils/routes.dart';
 import 'package:keyboard/widgets/settingsWidgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsPage extends StatefulWidget {
-  SettingsPage({Key? key, this.api}) : super();
+  SettingsPage({Key? key, this.api, this.themeNotifier}) : super();
   ApiManager? api;
+  ThemeModel? themeNotifier;
   @override
   State<SettingsPage> createState() => _SettingsPage();
 }
@@ -28,57 +31,63 @@ class _SettingsPage extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-            child: SettingsList(
-          sections: [
-            SettingsSection(
-              title: "Server",
-              tiles: [
-                SettingsTile(
-                  title: "ServerIP:Port",
-                  subtitle: api.ip + ":" + api.port.toString(),
-                  onTap: _changeServerDialog,
-                )
-              ],
-            ),
-            SettingsSection(
-              title: "Appearance",
-              tiles: [
-                SettingsTile(
-                  leading: Icon(Icons.art_track),
-                  title: "Theme",
-                  subtitle: theme.toUpperCase(),
-                  onTap: _changeThemeDialog,
+    return WillPopScope(
+        onWillPop: () {
+          Navigator.of(context).pushReplacement(FadeRoute(page: BongoScene()));
+          return true as Future<bool>;
+        },
+        child: Scaffold(
+            body: SafeArea(
+                child: SettingsList(
+              sections: [
+                SettingsSection(
+                  title: "Server",
+                  tiles: [
+                    SettingsTile(
+                      leading: Icon(Icons.cloud),
+                      title: "ServerIP:Port",
+                      subtitle: api.ip + ":" + api.port.toString(),
+                      onTap: _changeServerDialog,
+                    )
+                  ],
+                ),
+                SettingsSection(
+                  title: "Appearance",
+                  tiles: [
+                    SettingsTile(
+                      leading: Icon(Icons.art_track),
+                      title: "Theme",
+                      subtitle: theme.toUpperCase(),
+                      onTap: _changeThemeDialog,
+                    ),
+                  ],
+                ),
+                SettingsSection(
+                  title: "WPM Counter",
+                  tiles: [
+                    SettingsTile(
+                      leading: Icon(Icons.speed),
+                      title: "Measure Unit",
+                      subtitle: unit,
+                      onTap: _changeUnitDialog,
+                    ),
+                    SettingsTile(
+                      leading: Icon(Icons.timer),
+                      title: "Count time",
+                      subtitle: time.toString() + "s",
+                      onTap: _changeTimeDialog,
+                    ),
+                  ],
                 ),
               ],
-            ),
-            SettingsSection(
-              title: "WPM Counter",
-              tiles: [
-                SettingsTile(
-                  leading: Icon(Icons.speed),
-                  title: "Measure Unit",
-                  subtitle: unit,
-                  onTap: _changeUnitDialog,
-                ),
-                SettingsTile(
-                  leading: Icon(Icons.timer),
-                  title: "Count time",
-                  subtitle: time.toString() + "s",
-                  onTap: _changeTimeDialog,
-                ),
-              ],
-            ),
-          ],
-        )),
-        floatingActionButton: IconButton(
-          icon: Icon(Icons.chevron_left),
-          onPressed: () {
-            Navigator.of(context)
-                .pushReplacement(FadeRoute(page: BongoScene()));
-          },
-        ));
+            )),
+            floatingActionButton: IconButton(
+              icon: Icon(Icons.chevron_left),
+              onPressed: () {
+                Navigator.of(context)
+                    .pushReplacement(FadeRoute(page: BongoScene()));
+              },
+            )));
   }
 
   void _changeTimeDialog() {
@@ -270,6 +279,10 @@ class _SettingsPage extends State<SettingsPage> {
     if (text != null) {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString('theme', text);
+      theme = text;
+      if (THEMES[text]?.appTheme != null)
+        widget.themeNotifier?.setTheme = THEMES[text]?.appTheme as ThemeData;
+      print(widget.themeNotifier?.theme.backgroundColor);
       setState(() {});
     }
   }

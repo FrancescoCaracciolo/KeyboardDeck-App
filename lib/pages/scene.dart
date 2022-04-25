@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:keyboard/themes/ThemeNotifier.dart';
 import 'package:keyboard/widgets/bongocat.dart';
 import 'package:keyboard/themes/classic.dart';
 import 'package:keyboard/utils/api.dart';
@@ -30,7 +31,8 @@ Map<String, Map<String, dynamic>> SETTINGS = {
 };
 
 class BongoScene extends StatefulWidget {
-  const BongoScene({Key? key}) : super(key: key);
+  BongoScene({Key? key, this.themeNotifier}) : super(key: key);
+  ThemeModel? themeNotifier;
   @override
   State<BongoScene> createState() => _BongoScene();
 }
@@ -43,6 +45,7 @@ class _BongoScene extends State<BongoScene> {
     'assets/bongo_cat2_left.png',
     'assets/bongo_cat2_both.png'
   ];
+  bool disposed = false;
   String _timeString = "00:00"; // Init time string
   int _currentWPM = 0; // Init WPM int
   ApiManager api = ApiManager(); // Init API Manager
@@ -121,6 +124,7 @@ class _BongoScene extends State<BongoScene> {
         FadeRoute(
             page: SettingsPage(
           api: api,
+          themeNotifier: widget.themeNotifier,
         )));
   }
 
@@ -137,6 +141,9 @@ class _BongoScene extends State<BongoScene> {
         switch (key) {
           case 'theme':
             theme = setting as String;
+            if (THEMES[theme]?.appTheme != null)
+              widget.themeNotifier?.setTheme =
+                  THEMES[theme]?.appTheme as ThemeData;
             break;
           case 'unit':
             unit = setting as String;
@@ -168,8 +175,8 @@ class _BongoScene extends State<BongoScene> {
   // Start client
   Future<void> startUpdate() async {
     await Future.delayed(Duration.zero);
-    print(api.ip);
     while (true) {
+      if (disposed) break;
       //await Future.delayed(Duration(seconds: 1));
       await getUpdate();
     }
@@ -179,7 +186,6 @@ class _BongoScene extends State<BongoScene> {
     await Future.delayed(const Duration(milliseconds: 10));
     var result = await api.getUpdates();
 
-    //print(result);
     if (result != null) {
       if (result != "{}") {
         wpm.addFromJson(result);
@@ -193,5 +199,6 @@ class _BongoScene extends State<BongoScene> {
     super.dispose();
     wpmTimer.cancel();
     timeTimer.cancel();
+    disposed = true;
   }
 }
