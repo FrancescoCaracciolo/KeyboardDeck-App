@@ -1,16 +1,30 @@
-# keyboard
+# Keyboard Deck
 
-A new Flutter project.
+Have you ever felt the need to have a bongocat typing as you type? No? Well, probably you need it anyway.
 
-## Getting Started
+Keyboard deck is a simple application that supports **Windows, Mac OS, Linux, Android and IOS** that, at least for now, only shows a BongoCat typing as you type. The initial idea is taken from [here](https://www.reddit.com/r/MechanicalKeyboards/comments/h0a7kq/i_made_an_oled_animation_of_bongo_cat_that/).
 
-This project is a starting point for a Flutter application.
+**Its main purpose is to give a use to unused devices**, in fact, **the keystokes are sent from your computer to any device you want via UDP**.
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+First of all, you need to install and run KeyboardDeck-Backend on your main device, where the keyboard is attached to.
+Note that KeyboardDeck-Backend is made of two scripts:
+- Capture: Has to be run on the device the keyboard is attached to, takes any input and sends them to the server
+- Server: It receives requests from capture and the app. It is suggested to run it on the same computer of capture, but it can be run on any server
+After running both Capture and Server, you can run the app on your device, go to settings and input the Address of the server.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Security concerns
+
+The app is not complete yet, and many things are waiting to be added. 
+At the moment, it sends using unencrypted UDP requests anything you type, and it wouldn't be very hard to intercept the content of these requests for someone on your LAN.
+**For the moment, it is strongly advised to not run the script over the internet, but only in lan.**
+
+## Planned features
+
+- [ ] Fix images glitch
+- [ ] Add more themes
+- [ ] Add different themes from just Bongocats
+- [ ] Give an actual utility to this thing
+- [ ] Add music visualizers
+- [ ] Automatically detect servers on your local network
