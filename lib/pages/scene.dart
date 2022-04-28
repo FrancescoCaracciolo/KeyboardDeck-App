@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import 'package:keyboard/utils/routes.dart';
 import 'package:keyboard/pages/settings.dart';
 import 'package:keyboard/utils/wmpcounter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wakelock/wakelock.dart';
 
 Map<String, Map<String, dynamic>> SETTINGS = {
   "unit": {
@@ -27,6 +29,12 @@ Map<String, Map<String, dynamic>> SETTINGS = {
     "type": "int",
     "default": 15,
     "options": [5, 10, 15, 30, 45, 60],
+  },
+  "wakelock": {
+    "type": "int",
+    "default": 0,
+    "options": [0, 1],
+    "options_titles": ["Off", "On"],
   }
 };
 
@@ -159,6 +167,13 @@ class _BongoScene extends State<BongoScene> {
         switch (key) {
           case 'time':
             time = setting as int;
+            break;
+          case 'wakelock':
+            if (setting as int == 1) {
+              if (!Platform.isLinux) Wakelock.enable();
+            } else {
+              if (!Platform.isLinux) Wakelock.disable();
+            }
             break;
         }
       }

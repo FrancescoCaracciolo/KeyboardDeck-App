@@ -1,5 +1,6 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:keyboard/pages/scene.dart';
 import 'package:keyboard/themes/ThemeNotifier.dart';
 import 'package:keyboard/themes/classic.dart';
@@ -7,6 +8,7 @@ import 'package:keyboard/utils/api.dart';
 import 'package:keyboard/utils/routes.dart';
 import 'package:keyboard/widgets/settingsWidgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wakelock/wakelock.dart';
 
 class SettingsPage extends StatefulWidget {
   SettingsPage({Key? key, this.api, this.themeNotifier}) : super();
@@ -21,12 +23,14 @@ class _SettingsPage extends State<SettingsPage> {
   String unit = "";
   int time = 0;
   String theme = "";
+  bool wakelock = false;
 
   @override
   void initState() {
     super.initState();
     api = widget.api as ApiManager;
     _getSettings();
+    if (!Platform.isLinux) Wakelock.disable();
   }
 
   @override
@@ -80,6 +84,17 @@ class _SettingsPage extends State<SettingsPage> {
                     ),
                   ],
                 ),
+                SettingsSection(
+                  title: "General Settings",
+                  tiles: [
+                    SettingsTile(
+                      leading: Icon(Icons.bedtime_rounded),
+                      title: "Wakelock",
+                      subtitle: wakelock ? "On" : "Off",
+                      onTap: _changeWakelockDialog,
+                    ),
+                  ],
+                ),
               ],
             )),
             floatingActionButton: IconButton(
@@ -111,6 +126,47 @@ class _SettingsPage extends State<SettingsPage> {
               Navigator.pop(context);
             });
           }));
+    });
+    AlertDialog alert = AlertDialog(
+      title: Text('Time'),
+      content: SingleChildScrollView(
+          child: Column(mainAxisSize: MainAxisSize.min, children: list)),
+      actions: [
+        cancelButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  void _changeWakelockDialog() {
+    Widget cancelButton = TextButton(
+      child: Text("Cancel"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+    // set up the AlertDialog
+    List<Widget> list = [];
+    int pos = 0;
+    SETTINGS["wakelock"]?["options"].forEach((int value) {
+      list.add(RadioListTile(
+          title: Text(SETTINGS["wakelock"]?["options_titles"][pos]),
+          groupValue: wakelock ? 1 : 0,
+          value: value,
+          onChanged: (val) {
+            setState(() {
+              _changeWakelock(val as int);
+              Navigator.pop(context);
+            });
+          }));
+      pos++;
     });
     AlertDialog alert = AlertDialog(
       title: Text('Time'),
@@ -295,6 +351,13 @@ class _SettingsPage extends State<SettingsPage> {
     setState(() {});
   }
 
+  void _changeWakelock(int wakelockz) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt('wakelock', wakelockz);
+    wakelockz == 1 ? wakelock = true : wakelock = false;
+    setState(() {});
+  }
+
   void _getSettings() async {
     final prefs = await SharedPreferences.getInstance();
     SETTINGS.forEach((key, value) {
@@ -323,6 +386,9 @@ class _SettingsPage extends State<SettingsPage> {
         switch (key) {
           case 'time':
             time = setting as int;
+            break;
+          case 'wakelock':
+            setting as int == 1 ? wakelock = true : wakelock = false;
             break;
         }
       }
