@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:keyboard/themes/classic.dart';
+import 'package:keyboard/themes/Themes.dart';
 
 class InfoText extends StatelessWidget {
   InfoText(

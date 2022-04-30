@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:keyboard/pages/scene.dart';
 import 'package:keyboard/themes/ThemeNotifier.dart';
-import 'package:keyboard/themes/classic.dart';
+import 'package:keyboard/themes/Themes.dart';
 import 'package:keyboard/utils/api.dart';
 import 'package:keyboard/utils/routes.dart';
 import 'package:keyboard/widgets/settingsWidgets.dart';

@@ -1,12 +1,9 @@
-import 'dart:async';
-import 'dart:io';
 import 'package:keyboard/pages/scene.dart';
 
 import 'package:flutter/material.dart';
 import 'package:keyboard/themes/ThemeNotifier.dart';
 import 'package:keyboard/utils/api.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());

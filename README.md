@@ -2,16 +2,14 @@
 
 Have you ever felt the need to have a bongocat typing as you type? No? Well, probably you need it anyway.
 
-Keyboard deck is a simple application that supports **Windows, Mac OS, Linux, Android and IOS** that, at least for now, only shows a BongoCat typing as you type. The initial idea is taken from [here](https://www.reddit.com/r/MechanicalKeyboards/comments/h0a7kq/i_made_an_oled_animation_of_bongo_cat_that/).
+Keyboard deck is a simple application that supports **Windows, Mac OS, Linux, Android and IOS** and, at least for now, only shows a BongoCat typing as you type. The initial idea is taken from [here](https://www.reddit.com/r/MechanicalKeyboards/comments/h0a7kq/i_made_an_oled_animation_of_bongo_cat_that/).
 
 **Its main purpose is to give a use to unused devices**, in fact, **the keystokes are sent from your computer to any device you want via UDP**.
 
 ## Installation
 
-First of all, you need to install and run KeyboardDeck-Backend on your main device, where the keyboard is attached to.
-Note that KeyboardDeck-Backend is made of two scripts:
-- Capture: Has to be run on the device the keyboard is attached to, takes any input and sends them to the server
-- Server: It receives requests from capture and the app. It is suggested to run it on the same computer of capture, but it can be run on any server
+First of all, you need to install and run [KeyboardDeck-Backend](https://github.com/FrancescoCaracciolo/KeyboardDeck-Backend) on your main device, where the keyboard is attached to.
+
 After running both Capture and Server, you can run the app on your device, go to settings and input the Address of the server.
 
 ## Security concerns

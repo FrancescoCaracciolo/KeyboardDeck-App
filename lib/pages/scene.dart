@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:keyboard/themes/ThemeNotifier.dart';
 import 'package:keyboard/widgets/bongocat.dart';
-import 'package:keyboard/themes/classic.dart';
+import 'package:keyboard/themes/Themes.dart';
 import 'package:keyboard/utils/api.dart';
 import 'package:keyboard/utils/routes.dart';
 import 'package:keyboard/pages/settings.dart';

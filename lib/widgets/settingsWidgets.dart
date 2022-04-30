@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'dart:ui' as dio;
 
 enum _SettingsTileType { simple, switchTile }

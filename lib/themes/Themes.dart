@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class KBThemeData {
   KBThemeData(
@@ -7,6 +6,7 @@ class KBThemeData {
       required this.images,
       required this.defaultImage,
       required this.angle,
+      required this.bottomOffset,
       required this.timePostion,
       required this.wpmPosition,
       required this.aspectRatio,
@@ -17,6 +17,7 @@ class KBThemeData {
   String defaultImage;
   double aspectRatio;
   double angle;
+  double bottomOffset;
   double timePostion;
   double wpmPosition;
   double textSize;
@@ -34,6 +35,7 @@ Map<String, KBThemeData> THEMES = {
       defaultImage: 'assets/bongo_cat2.png',
       aspectRatio: 230 / 108,
       angle: 13 / 360,
+      bottomOffset: 6,
       timePostion: 7 / 8,
       wpmPosition: 1 / 8,
       textSize: 1 / 30,
@@ -54,9 +56,10 @@ Map<String, KBThemeData> THEMES = {
       defaultImage: 'assets/bongo_cat2.png',
       aspectRatio: 230 / 108,
       angle: 13 / 360,
+      bottomOffset: 6,
       timePostion: 7 / 8,
       wpmPosition: 1 / 8,
-      textSize: 1 / 30,
+      textSize: 1 / 29,
       defaultTextstyle: const TextStyle(
           fontWeight: FontWeight.bold, fontFamily: "Montserrat"),
       appTheme: ThemeData(

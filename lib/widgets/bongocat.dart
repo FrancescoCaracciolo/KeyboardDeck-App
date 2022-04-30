@@ -3,9 +3,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:keyboard/themes/classic.dart';
+import 'package:keyboard/themes/Themes.dart';
 import 'package:keyboard/widgets/InfoText.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class BongoCat extends StatefulWidget {
   BongoCat({
@@ -69,8 +68,9 @@ class BongoCatState extends State<BongoCat> {
             size: constraints.maxWidth,
           ),
           bottom: ((constraints.maxWidth * widget.theme.timePostion) *
-                  tan((widget.theme.angle) * 2 * pi) +
-              (constraints.maxWidth / 2) * widget.theme.textSize),
+                      tan((widget.theme.angle) * 2 * pi) +
+                  (constraints.maxWidth / 2) * widget.theme.textSize) +
+              widget.theme.bottomOffset,
           right: constraints.maxWidth * widget.theme.timePostion),
       Positioned(
           child: InfoText(
@@ -83,8 +83,9 @@ class BongoCatState extends State<BongoCat> {
             size: constraints.maxWidth,
           ),
           bottom: ((constraints.maxWidth * widget.theme.wpmPosition) *
-                  tan((widget.theme.angle) * 2 * pi) +
-              (constraints.maxWidth / 2) * widget.theme.textSize),
+                      tan((widget.theme.angle) * 2 * pi) +
+                  (constraints.maxWidth / 2) * widget.theme.textSize) +
+              widget.theme.bottomOffset,
           right: constraints.maxWidth * widget.theme.wpmPosition),
     ]));
   }
