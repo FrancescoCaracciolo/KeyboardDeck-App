@@ -23,7 +23,7 @@ Map<String, Map<String, dynamic>> SETTINGS = {
   "theme": {
     "type": "String",
     "default": "light",
-    "options": ["light", "dark"],
+    "options": ["light", "dark", "megumin"],
   },
   "time": {
     "type": "int",
@@ -47,12 +47,6 @@ class BongoScene extends StatefulWidget {
 
 class _BongoScene extends State<BongoScene> {
   SharedPreferences? prefs;
-  String currentImage = 'assets/bongo_cat2.png';
-  var images = [
-    'assets/bongo_cat2_right.png',
-    'assets/bongo_cat2_left.png',
-    'assets/bongo_cat2_both.png'
-  ];
   bool disposed = false;
   String _timeString = "00:00"; // Init time string
   int _currentWPM = 0; // Init WPM int
@@ -89,6 +83,7 @@ class _BongoScene extends State<BongoScene> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: THEMES[theme]?.appTheme.backgroundColor,
       body: BongoCat(
         key: _myKey,
         width: MediaQuery.of(context).size.width,
@@ -179,6 +174,7 @@ class _BongoScene extends State<BongoScene> {
       }
     });
     setState(() {});
+    _myKey.currentState?.press();
   }
 
   void _getCurrentTime() {
