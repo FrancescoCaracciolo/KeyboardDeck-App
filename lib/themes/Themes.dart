@@ -11,6 +11,8 @@ class KBThemeData {
       required this.wpmPosition,
       required this.aspectRatio,
       required this.defaultTextstyle,
+      required this.textTopOffset,
+      required this.textLeftOffset,
       required this.textSize,
       required this.appTheme});
   List<String> images;
@@ -20,6 +22,8 @@ class KBThemeData {
   double bottomOffset;
   double timePostion;
   double wpmPosition;
+  double textTopOffset;
+  double textLeftOffset;
   double textSize;
   TextStyle defaultTextstyle;
   ThemeData appTheme;
@@ -38,6 +42,8 @@ Map<String, KBThemeData> THEMES = {
       bottomOffset: 0,
       timePostion: 7 / 8,
       wpmPosition: 1 / 8,
+      textTopOffset: 1 / 7,
+      textLeftOffset: 1 / 10,
       textSize: 1 / 30,
       defaultTextstyle:
           const TextStyle(fontWeight: FontWeight.bold, fontFamily: "CatCafe"),
@@ -59,6 +65,8 @@ Map<String, KBThemeData> THEMES = {
       bottomOffset: 0,
       timePostion: 7 / 8,
       wpmPosition: 1 / 8,
+      textTopOffset: 3 / 21,
+      textLeftOffset: 10 / 21,
       textSize: 1 / 30,
       defaultTextstyle:
           const TextStyle(fontWeight: FontWeight.bold, fontFamily: "CatCafe"),
@@ -80,6 +88,8 @@ Map<String, KBThemeData> THEMES = {
       bottomOffset: 6,
       timePostion: 7 / 8,
       wpmPosition: 1 / 8,
+      textTopOffset: 1 / 2,
+      textLeftOffset: 1 / 2,
       textSize: 1 / 29,
       defaultTextstyle:
           const TextStyle(fontWeight: FontWeight.bold, fontFamily: "CatCafe"),

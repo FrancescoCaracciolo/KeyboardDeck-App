@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:intl/intl.dart';
@@ -56,6 +57,7 @@ class _BongoScene extends State<BongoScene> {
   String theme = SETTINGS["theme"]?["default"];
   String unit = SETTINGS["unit"]?["default"];
   int time = SETTINGS["time"]?["default"];
+  String? motd;
   late Timer wpmTimer;
   late Timer timeTimer;
 
@@ -85,12 +87,12 @@ class _BongoScene extends State<BongoScene> {
     return Scaffold(
       backgroundColor: THEMES[theme]?.appTheme.backgroundColor,
       body: BongoCat(
-        key: _myKey,
-        width: MediaQuery.of(context).size.width,
-        theme: THEMES[theme] as KBThemeData,
-        unit: unit,
-        wpm: _currentWPM,
-      ),
+          key: _myKey,
+          width: MediaQuery.of(context).size.width,
+          theme: THEMES[theme] as KBThemeData,
+          unit: unit,
+          wpm: _currentWPM,
+          motd: motd),
       // Temporary Buttons
       floatingActionButton: Column(children: [
         IconButton(
@@ -112,6 +114,11 @@ class _BongoScene extends State<BongoScene> {
   void press() async {
     // Makes a bongocat press
     _myKey.currentState?.press();
+  }
+
+  void changeMotd() async {
+    // Makes a bongocat press
+    _myKey.currentState?.changeMotd(motd);
   }
 
   void calculateWPM() {
@@ -198,9 +205,15 @@ class _BongoScene extends State<BongoScene> {
     var result = await api.getUpdates();
 
     if (result != null) {
-      if (result != "{}") {
+      Map r = json.decode(result) as Map;
+      if (r.containsKey("keys") &&
+          Map<String, dynamic>.from(r["keys"]).isNotEmpty) {
         wpm.addFromJson(result);
         press();
+      }
+      if (r.containsKey("motd")) {
+        motd = r["motd"];
+        changeMotd();
       }
     }
   }
