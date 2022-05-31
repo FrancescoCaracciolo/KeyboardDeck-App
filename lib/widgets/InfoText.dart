@@ -21,13 +21,15 @@ class InfoText extends StatelessWidget {
           textAlign: TextAlign.center,
           text: TextSpan(children: [
             TextSpan(
-                text: text + " \n",
+                text: text,
                 style: theme.defaultTextstyle
                     .copyWith(fontSize: size * theme.textSize)),
-            TextSpan(
-                text: subtext,
-                style: theme.defaultTextstyle
-                    .copyWith(fontSize: size * theme.textSize * 2 / 3))
+            subtext != null
+                ? TextSpan(
+                    text: "\n" + (subtext as String),
+                    style: theme.defaultTextstyle
+                        .copyWith(fontSize: size * theme.textSize * 2 / 3))
+                : TextSpan()
           ]),
         ),
         turns: AlwaysStoppedAnimation(theme.angle));

@@ -122,6 +122,7 @@ class BongoCatState extends State<BongoCat> {
         setState(() {});
       } else {
         motd11 = motd1;
+        motd12 = "";
         setState(() {});
       }
       widget.motd = motd1;
