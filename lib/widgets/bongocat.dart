@@ -115,7 +115,7 @@ class BongoCatState extends State<BongoCat> {
 
   void changeMotd(String? motd1) async {
     if (motd1 != null && motd1 != widget.motd) {
-      List<String> split = motd1.split("\\auth//");
+      List<String> split = motd1.split('\\auth//');
       if (split.length > 1) {
         motd11 = split[0];
         motd12 = split[1];

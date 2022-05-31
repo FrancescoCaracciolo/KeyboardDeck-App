@@ -78,11 +78,11 @@ Map<String, KBThemeData> THEMES = {
       )),
   "dark": KBThemeData(
       images: [
-        'assets/bongo_cat2_right.png',
-        'assets/bongo_cat2_left.png',
-        'assets/bongo_cat2_both.png'
+        'assets/default_dark/BongoCat2.png',
+        'assets/default_dark/BongoCat3.png',
+        'assets/default_dark/BongoCat4.png',
       ],
-      defaultImage: 'assets/bongo_cat2.png',
+      defaultImage: 'assets/default_dark/BongoCat1.png',
       aspectRatio: 230 / 108,
       angle: 13 / 360,
       bottomOffset: 0,
@@ -90,13 +90,15 @@ Map<String, KBThemeData> THEMES = {
       wpmPosition: 1 / 8,
       textTopOffset: 1 / 7,
       textLeftOffset: 1 / 10,
-      textSize: 1 / 29,
-      defaultTextstyle:
-          const TextStyle(fontWeight: FontWeight.bold, fontFamily: "CatCafe"),
+      textSize: 1 / 30,
+      defaultTextstyle: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontFamily: "CatCafe",
+          color: Colors.white),
       appTheme: ThemeData(
-        backgroundColor: Colors.black,
         brightness: Brightness.dark,
+        backgroundColor: Colors.black,
         primarySwatch: Colors.blue,
         primaryColor: Colors.blue[500],
-      ))
+      )),
 };

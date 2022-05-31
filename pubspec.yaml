@@ -71,6 +71,7 @@ flutter:
     - assets/bongo_cat.png
     - assets/bongo_cat2_right.png
     - assets/default_light/
+    - assets/default_dark/
     - assets/megumin/
   # To add assets to your application, add an assets section, like this:
   # assets:
