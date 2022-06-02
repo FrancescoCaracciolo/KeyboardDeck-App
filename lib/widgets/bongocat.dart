@@ -55,56 +55,57 @@ class BongoCatState extends State<BongoCat> {
 
   Widget _layout(BuildContext context, BoxConstraints constraints) {
     return Container(
+        color: widget.theme.appTheme.backgroundColor,
         child: Stack(children: [
-      // BongoCat
-      Image.asset(
-        _currentImage,
-        fit: BoxFit.fitWidth,
-        height: double.infinity,
-        width: double.infinity,
-        alignment: Alignment.center,
-      ),
-      // Time Widget, to modularize
-      Positioned(
-          child: InfoText(
-            text: _timeString,
-            theme: widget.theme,
-            size: constraints.maxWidth,
+          // BongoCat
+          Image.asset(
+            _currentImage,
+            fit: BoxFit.cover,
+            height: double.infinity,
+            width: double.infinity,
+            alignment: Alignment.center,
           ),
-          bottom: ((constraints.maxWidth * widget.theme.timePostion) *
-                      tan((widget.theme.angle) * 2 * pi) +
-                  (constraints.maxWidth / 2) * widget.theme.textSize) +
-              widget.theme.bottomOffset,
-          right: constraints.maxWidth * widget.theme.timePostion),
-      Positioned(
-          child: InfoText(
-            text: widget.unit +
-                ": " +
-                (widget.unit == "WPM"
-                    ? widget.wpm.toString()
-                    : (widget.wpm * 5).toString()),
-            theme: widget.theme,
-            size: constraints.maxWidth,
-          ),
-          bottom: ((constraints.maxWidth * widget.theme.wpmPosition) *
-                      tan((widget.theme.angle) * 2 * pi) +
-                  (constraints.maxWidth / 2) * widget.theme.textSize) +
-              widget.theme.bottomOffset,
-          right: constraints.maxWidth * widget.theme.wpmPosition),
-      Positioned.fromRelativeRect(
-        rect: RelativeRect.fromLTRB(
-            constraints.maxHeight * widget.theme.textLeftOffset,
-            constraints.maxWidth * widget.theme.textTopOffset,
-            0,
-            0),
-        child: InfoText(
-          text: motd11,
-          subtext: motd12,
-          theme: widget.theme,
-          size: constraints.maxWidth,
-        ),
-      )
-    ]));
+          // Time Widget, to modularize
+          Positioned(
+              child: InfoText(
+                text: _timeString,
+                theme: widget.theme,
+                size: constraints.maxWidth,
+              ),
+              bottom: ((constraints.maxWidth * widget.theme.timePostion) *
+                          tan((widget.theme.angle) * 2 * pi) +
+                      (constraints.maxWidth / 2) * widget.theme.textSize) +
+                  widget.theme.bottomOffset,
+              right: constraints.maxWidth * widget.theme.timePostion),
+          Positioned(
+              child: InfoText(
+                text: widget.unit +
+                    ": " +
+                    (widget.unit == "WPM"
+                        ? widget.wpm.toString()
+                        : (widget.wpm * 5).toString()),
+                theme: widget.theme,
+                size: constraints.maxWidth,
+              ),
+              bottom: ((constraints.maxWidth * widget.theme.wpmPosition) *
+                          tan((widget.theme.angle) * 2 * pi) +
+                      (constraints.maxWidth / 2) * widget.theme.textSize) +
+                  widget.theme.bottomOffset,
+              right: constraints.maxWidth * widget.theme.wpmPosition),
+          Positioned.fromRelativeRect(
+            rect: RelativeRect.fromLTRB(
+                constraints.maxHeight * widget.theme.textLeftOffset,
+                constraints.maxWidth * widget.theme.textTopOffset,
+                0,
+                0),
+            child: InfoText(
+              text: motd11,
+              subtext: motd12,
+              theme: widget.theme,
+              size: constraints.maxWidth,
+            ),
+          )
+        ]));
   }
 
   void _getCurrentTime() {

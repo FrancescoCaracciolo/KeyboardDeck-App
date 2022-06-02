@@ -85,7 +85,7 @@ class _BongoScene extends State<BongoScene> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: THEMES[theme]?.appTheme.backgroundColor,
+      backgroundColor: THEMES[theme]?.tablecolor,
       body: BongoCat(
           key: _myKey,
           width: MediaQuery.of(context).size.width,
