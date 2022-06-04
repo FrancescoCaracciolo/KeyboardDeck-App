@@ -18,7 +18,7 @@ class WPMCounter {
 
   void addFromJson(String response) {
     Map r = json.decode(response) as Map;
-    r.forEach((key, value) {
+    r["keys"].forEach((key, value) {
       add(value);
     });
   }

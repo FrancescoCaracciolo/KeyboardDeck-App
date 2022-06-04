@@ -11,15 +11,21 @@ class KBThemeData {
       required this.wpmPosition,
       required this.aspectRatio,
       required this.defaultTextstyle,
+      required this.textTopOffset,
+      required this.textLeftOffset,
       required this.textSize,
-      required this.appTheme});
+      required this.appTheme,
+      required this.tablecolor});
   List<String> images;
   String defaultImage;
   double aspectRatio;
   double angle;
+  Color tablecolor;
   double bottomOffset;
   double timePostion;
   double wpmPosition;
+  double textTopOffset;
+  double textLeftOffset;
   double textSize;
   TextStyle defaultTextstyle;
   ThemeData appTheme;
@@ -38,15 +44,18 @@ Map<String, KBThemeData> THEMES = {
       bottomOffset: 0,
       timePostion: 7 / 8,
       wpmPosition: 1 / 8,
+      textTopOffset: 1 / 7,
+      textLeftOffset: 1 / 10,
       textSize: 1 / 30,
       defaultTextstyle:
           const TextStyle(fontWeight: FontWeight.bold, fontFamily: "CatCafe"),
       appTheme: ThemeData(
         brightness: Brightness.light,
-        backgroundColor: Colors.white38,
+        backgroundColor: Colors.white54,
         primarySwatch: Colors.blue,
         primaryColor: Colors.blue[500],
-      )),
+      ),
+      tablecolor: Colors.white),
   "megumin": KBThemeData(
       images: [
         'assets/megumin/BongoCat2.png',
@@ -59,6 +68,8 @@ Map<String, KBThemeData> THEMES = {
       bottomOffset: 0,
       timePostion: 7 / 8,
       wpmPosition: 1 / 8,
+      textTopOffset: 1 / 7,
+      textLeftOffset: 1 / 10,
       textSize: 1 / 30,
       defaultTextstyle:
           const TextStyle(fontWeight: FontWeight.bold, fontFamily: "CatCafe"),
@@ -67,26 +78,32 @@ Map<String, KBThemeData> THEMES = {
         backgroundColor: Color(0xFFf42a24),
         primarySwatch: Colors.blue,
         primaryColor: Colors.blue[500],
-      )),
+      ),
+      tablecolor: Colors.white),
   "dark": KBThemeData(
       images: [
-        'assets/bongo_cat2_right.png',
-        'assets/bongo_cat2_left.png',
-        'assets/bongo_cat2_both.png'
+        'assets/default_dark/BongoCat2.png',
+        'assets/default_dark/BongoCat3.png',
+        'assets/default_dark/BongoCat4.png',
       ],
-      defaultImage: 'assets/bongo_cat2.png',
+      defaultImage: 'assets/default_dark/BongoCat1.png',
       aspectRatio: 230 / 108,
       angle: 13 / 360,
-      bottomOffset: 6,
+      bottomOffset: 0,
       timePostion: 7 / 8,
       wpmPosition: 1 / 8,
-      textSize: 1 / 29,
-      defaultTextstyle:
-          const TextStyle(fontWeight: FontWeight.bold, fontFamily: "CatCafe"),
+      textTopOffset: 1 / 7,
+      textLeftOffset: 1 / 10,
+      textSize: 1 / 30,
+      defaultTextstyle: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontFamily: "CatCafe",
+          color: Colors.white),
       appTheme: ThemeData(
-        backgroundColor: Colors.black,
         brightness: Brightness.dark,
+        backgroundColor: Colors.black,
         primarySwatch: Colors.blue,
         primaryColor: Colors.blue[500],
-      ))
+      ),
+      tablecolor: Color(0xFF393939)),
 };
