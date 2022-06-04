@@ -83,7 +83,7 @@ jobs:
       - name: Upload Windows build
         uses: actions/upload-artifact@master
         with:
-          name: apk-build
+          name: windows-build
           path: build/
       - name: Download a Build Artifact
         uses: actions/download-artifact@v3.0.0
@@ -106,7 +106,7 @@ jobs:
       - name: Upload Linux build
         uses: actions/upload-artifact@master
         with:
-          name: apk-build
+          name: linux-build
           path: build/
       - name: Download a Build Artifact
         uses: actions/download-artifact@v3.0.0
