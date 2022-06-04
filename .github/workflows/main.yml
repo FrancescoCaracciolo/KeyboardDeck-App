@@ -42,7 +42,7 @@ jobs:
           path: build/ios/iphoneos
 
   build_appbundle:
-    name: Build Flutter (Android)
+    name: Build Flutter (APK)
     needs: [flutter_test]
     runs-on: ubuntu-latest
     steps:
@@ -55,7 +55,7 @@ jobs:
           channel: "stable"
       - run: flutter pub get
       - run: flutter clean
-      - run: flutter build appbundle
+      - run: flutter build apk --release
       - name: Upload APK
         uses: actions/upload-artifact@master
         with:
