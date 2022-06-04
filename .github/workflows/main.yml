@@ -40,6 +40,8 @@ jobs:
         with:
           name: ios-build
           path: build/ios/iphoneos
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v3.0.0
 
   build_appbundle:
     name: Build Flutter (APK)
@@ -61,3 +63,5 @@ jobs:
         with:
           name: apk-build
           path: build/app/outputs/apk/release
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v3.0.0
