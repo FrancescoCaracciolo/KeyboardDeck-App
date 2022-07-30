@@ -51,7 +51,7 @@ Map<String, KBThemeData> THEMES = {
           const TextStyle(fontWeight: FontWeight.bold, fontFamily: "CatCafe"),
       appTheme: ThemeData(
         brightness: Brightness.light,
-        backgroundColor: Colors.white54,
+        backgroundColor: Colors.grey,
         primarySwatch: Colors.blue,
         primaryColor: Colors.blue[500],
       ),
