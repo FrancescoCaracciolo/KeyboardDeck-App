@@ -27,14 +27,16 @@ class BongoCat extends StatefulWidget {
 
 class BongoCatState extends State<BongoCat> {
   String _timeString = "00:00"; // Init time string
-  String _currentImage = "";
+  late Image _currentImage;
+  late Image _defImage;
+  List<Image> _images = [];
   String motd11 = "";
   String motd12 = "";
   late Timer timeTimer;
   @override
   void initState() {
     super.initState();
-    _currentImage = widget.theme.defaultImage;
+    loadImages();
     timeTimer = Timer.periodic(
         const Duration(seconds: 1), (Timer t) => _getCurrentTime());
   }
@@ -48,9 +50,52 @@ class BongoCatState extends State<BongoCat> {
   }
 
   @override
+  void didUpdateWidget(covariant BongoCat oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.theme != widget.theme) {
+      loadImages(true); // Redo a precache image only if the theme is changed
+    } else {
+      loadImages();
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    loadImages(true); // precache images
+    super.didChangeDependencies();
+  }
+
+  @override
   void dispose() {
     super.dispose();
     timeTimer.cancel();
+  }
+
+  void loadImages([bool precache = false]) {
+    // Loads images to avoid glitches, true if precache images is also needed
+    _images = [];
+
+    widget.theme.images.forEach((element) {
+      Image image = Image.asset(
+        element,
+        fit: BoxFit.cover,
+        height: double.infinity,
+        width: double.infinity,
+        alignment: Alignment.center,
+      );
+      _images.add(image);
+      if (precache) precacheImage(image.image, context);
+    });
+    _defImage = Image.asset(
+      widget.theme.defaultImage,
+      fit: BoxFit.cover,
+      height: double.infinity,
+      width: double.infinity,
+      alignment: Alignment.center,
+    );
+    _currentImage = _defImage;
+
+    setState(() {});
   }
 
   Widget _layout(BuildContext context, BoxConstraints constraints) {
@@ -58,13 +103,7 @@ class BongoCatState extends State<BongoCat> {
         color: widget.theme.appTheme.backgroundColor,
         child: Stack(children: [
           // BongoCat
-          Image.asset(
-            _currentImage,
-            fit: BoxFit.cover,
-            height: double.infinity,
-            width: double.infinity,
-            alignment: Alignment.center,
-          ),
+          _currentImage,
           // Time Widget, to modularize
           Positioned(
               child: InfoText(
@@ -136,11 +175,11 @@ class BongoCatState extends State<BongoCat> {
     Random rand = Random(DateTime.now().millisecond);
     int n = rand.nextInt(widget.theme.images.length);
     setState(() {
-      _currentImage = widget.theme.images[n];
+      _currentImage = _images[n];
     });
     var _timer = Timer(Duration(milliseconds: 80), () {
       setState(() {
-        _currentImage = widget.theme.defaultImage;
+        _currentImage = _defImage;
       });
     });
   }
