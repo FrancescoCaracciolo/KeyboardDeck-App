@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:keyboard/pages/scene.dart';
 import 'package:keyboard/themes/ThemeNotifier.dart';
 import 'package:keyboard/themes/Themes.dart';
@@ -9,6 +10,9 @@ import 'package:keyboard/utils/routes.dart';
 import 'package:keyboard/widgets/settingsWidgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wakelock/wakelock.dart';
+import 'package:keyboard/utils/defaultsettings.dart';
+
+Map<String, Map<String, dynamic>> SETTINGS = getDefaultSettings();
 
 class SettingsPage extends StatefulWidget {
   SettingsPage({Key? key, this.api, this.themeNotifier}) : super();
@@ -28,6 +32,10 @@ class _SettingsPage extends State<SettingsPage> {
   @override
   void initState() {
     super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitDown,
+      DeviceOrientation.portraitUp,
+    ]);
     api = widget.api as ApiManager;
     _getSettings();
     if (!Platform.isLinux) Wakelock.disable();

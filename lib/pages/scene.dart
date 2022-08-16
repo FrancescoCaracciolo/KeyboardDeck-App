@@ -14,30 +14,9 @@ import 'package:keyboard/pages/settings.dart';
 import 'package:keyboard/utils/wmpcounter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wakelock/wakelock.dart';
+import 'package:keyboard/utils/defaultsettings.dart';
 
-Map<String, Map<String, dynamic>> SETTINGS = {
-  "unit": {
-    "type": "String",
-    "default": "WPM",
-    "options": ["WPM", "CPM"],
-  },
-  "theme": {
-    "type": "String",
-    "default": "light",
-    "options": ["light", "dark", "megumin"],
-  },
-  "time": {
-    "type": "int",
-    "default": 15,
-    "options": [5, 10, 15, 30, 45, 60],
-  },
-  "wakelock": {
-    "type": "int",
-    "default": 0,
-    "options": [0, 1],
-    "options_titles": ["Off", "On"],
-  }
-};
+Map<String, Map<String, dynamic>> SETTINGS = getDefaultSettings();
 
 class BongoScene extends StatefulWidget {
   BongoScene({Key? key, this.themeNotifier}) : super(key: key);
