@@ -38,7 +38,6 @@ class _BongoScene extends State<BongoScene> {
   int time = SETTINGS["time"]?["default"];
   String? motd;
   late Timer wpmTimer;
-  late Timer timeTimer;
 
   @override
   void initState() {
@@ -51,9 +50,7 @@ class _BongoScene extends State<BongoScene> {
     // Hide UI
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
     // Update time
-    wpmTimer = Timer.periodic(
-        const Duration(seconds: 1), (Timer t) => _getCurrentTime());
-    timeTimer =
+    wpmTimer =
         Timer.periodic(const Duration(seconds: 1), (Timer t) => calculateWPM());
     // Start making requests
     startUpdate();
@@ -201,7 +198,6 @@ class _BongoScene extends State<BongoScene> {
   void dispose() {
     super.dispose();
     wpmTimer.cancel();
-    timeTimer.cancel();
     disposed = true;
   }
 }

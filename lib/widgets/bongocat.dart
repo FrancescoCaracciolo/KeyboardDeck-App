@@ -33,12 +33,14 @@ class BongoCatState extends State<BongoCat> {
   String motd11 = "";
   String motd12 = "";
   late Timer timeTimer;
+  late Timer restimer;
   @override
   void initState() {
     super.initState();
     loadImages();
     timeTimer = Timer.periodic(
-        const Duration(seconds: 1), (Timer t) => _getCurrentTime());
+        const Duration(seconds: 2), (Timer t) => _getCurrentTime());
+    restimer = Timer(Duration(microseconds: 1), () {});
   }
 
   @override
@@ -93,7 +95,7 @@ class BongoCatState extends State<BongoCat> {
       width: double.infinity,
       alignment: Alignment.center,
     );
-    _currentImage = _defImage;
+    //_currentImage = _defImage;
 
     setState(() {});
   }
@@ -177,7 +179,10 @@ class BongoCatState extends State<BongoCat> {
     setState(() {
       _currentImage = _images[n];
     });
-    var _timer = Timer(Duration(milliseconds: 45), () {
+    if (restimer.isActive) {
+      restimer.cancel();
+    }
+    restimer = Timer(Duration(milliseconds: 50), () {
       setState(() {
         _currentImage = _defImage;
       });
