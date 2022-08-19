@@ -177,7 +177,7 @@ class BongoCatState extends State<BongoCat> {
     setState(() {
       _currentImage = _images[n];
     });
-    var _timer = Timer(Duration(milliseconds: 80), () {
+    var _timer = Timer(Duration(milliseconds: 45), () {
       setState(() {
         _currentImage = _defImage;
       });

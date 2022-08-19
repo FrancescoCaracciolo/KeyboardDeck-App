@@ -20,8 +20,8 @@ class ApiManager {
     if (tport != null) port = tport;
   }
 
-  Future<String?> getUpdates() async {
-    List<int> message = utf8.encode('{"request": "get"}');
+  Future<String?> sendRequest(String text) async {
+    List<int> message = utf8.encode(text);
     Endpoint endpoint = Endpoint.unicast(InternetAddress(ip), port: Port(port));
 
     UDP socket = await UDP.bind(Endpoint.any());
@@ -34,6 +34,13 @@ class ApiManager {
     });
     _closeSocket(socket); //Close socket after 0.5s
     return result;
+  }
+
+  Future<String?> getUpdates() async {
+    Map message = {
+      'request': 'get',
+    };
+    return sendRequest(json.encode(message));
   }
 
   _closeSocket(UDP socket) async {

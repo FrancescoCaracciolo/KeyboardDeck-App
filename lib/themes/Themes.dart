@@ -101,7 +101,7 @@ Map<String, KBThemeData> THEMES = {
           color: Colors.white),
       appTheme: ThemeData(
         brightness: Brightness.dark,
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xFF181818),
         primarySwatch: Colors.blue,
         primaryColor: Colors.blue[500],
       ),
