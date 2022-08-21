@@ -8,7 +8,7 @@ Keyboard deck is a simple application that supports **Windows, Mac OS, Linux, An
 
 ## Installation
 
-First of all, you need to install and run [KeyboardDeck-Backend](https://github.com/FrancescoCaracciolo/KeyboardDeck-Backend) on your main device, where the keyboard is attached to.
+First of all, you need to install and run [KeyboardDeck-Server](https://github.com/FrancescoCaracciolo/KeyboardDeck-Server) on your main device, where the keyboard is attached to.
 
 After running both Capture and Server, you can run the app on your device, go to settings and input the Address of the server.
 
@@ -20,8 +20,8 @@ At the moment, it sends using unencrypted UDP requests anything you type, and it
 
 ## Planned features
 
-- [ ] Fix images glitch
-- [ ] Add more themes
+- [X] Fix images glitch
+- [X] Add more themes
 - [ ] Add different themes from just Bongocats
 - [ ] Give an actual utility to this thing
 - [ ] Add music visualizers

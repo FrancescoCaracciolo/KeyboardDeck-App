@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=KeyboardDeck
+Exec=keyboard %U
+Terminal=false
+Type=Application
+Icon=keyboarddeck
+Comment=KeyboardDeck
+Categories=Utility;
+
