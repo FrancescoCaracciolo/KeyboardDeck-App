@@ -81,11 +81,19 @@ jobs:
       - run: flutter pub get
       - run: flutter clean
       - run: flutter build windows --release
+      - name: Create MSIX
+        run: flutter pub run msix:create
+
       - name: Upload Windows build
         uses: actions/upload-artifact@master
         with:
           name: windows-build
           path: build/
+      - name: Upload Whole folder
+        uses: actions/upload-artifact@master
+        with:
+          name: windows-folder
+          path: .
       - name: Download a Build Artifact
         uses: actions/download-artifact@v3.0.0
   build_linux:
