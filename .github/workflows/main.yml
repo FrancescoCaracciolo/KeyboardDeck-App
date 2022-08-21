@@ -103,10 +103,17 @@ jobs:
       - run: flutter pub get
       - run: flutter clean
       - run: flutter build linux --release
+      - name: Generate AppImage
+        run: cd BinaryBuild/Linux-AppImage/ && bash build_appimage.sh
       - name: Upload Linux build
         uses: actions/upload-artifact@master
         with:
           name: linux-build
-          path: build/
+          path: build/linux/x64
+      - name: Upload Linux AppImage
+        uses: actions/upload-artifact@master
+        with:
+          name: linux-AppImage
+          path: BinaryBuild/Linux-AppImage/
       - name: Download a Build Artifact
         uses: actions/download-artifact@v3.0.0
