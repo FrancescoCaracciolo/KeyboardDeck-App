@@ -36,7 +36,6 @@ jobs:
       - run: flutter pub get
       - run: flutter clean
       - run: flutter build ios --release --no-codesign
-      - run: flutter build ipa --release --no-codesign
       - name: Upload iPA
         uses: actions/upload-artifact@master
         with:
@@ -87,11 +86,6 @@ jobs:
         with:
           name: windows-build
           path: build/
-      - name: Upload Windows runner
-        uses: actions/upload-artifact@master
-        with:
-          name: windows-runner
-          path: build/windows/runner/Release
   build_linux:
     name: Build Flutter (Linux)
     needs: [flutter_test]
