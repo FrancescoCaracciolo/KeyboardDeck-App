@@ -75,11 +75,11 @@ Map<String, KBThemeData> THEMES = {
           const TextStyle(fontWeight: FontWeight.bold, fontFamily: "CatCafe"),
       appTheme: ThemeData(
         brightness: Brightness.light,
-        backgroundColor: Color(0xFFf42a24),
+        backgroundColor: Color(0xFF9c4347),
         primarySwatch: Colors.blue,
         primaryColor: Colors.blue[500],
       ),
-      tablecolor: Colors.white),
+      tablecolor: Color(0xFF393939)),
   "dark": KBThemeData(
       images: [
         'assets/default_dark/BongoCat2.png',
