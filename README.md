@@ -10,6 +10,7 @@ Keyboard deck is a simple application that supports **Windows, Mac OS, Linux, An
 
 **Its main purpose is to give a use to unused devices**, in fact, **the keystokes are sent from your computer to any device you want via UDP**.
 ## Download
+#### The first option for each OS is the suggested one.
 <details>
   <summary><h3>KeyboardDeck - APP</h1></summary>
 
@@ -25,22 +26,23 @@ Keyboard deck is a simple application that supports **Windows, Mac OS, Linux, An
 </thead>
 <tbody>
 <tr>
-<td><a href="https://app.keyboarddeck.space/apk">APK</a></td>
-<td><a href="https://app.keyboarddeck.space/apk">IPA</a></td>
-<td><a href="https://app.keyboarddeck.space/apk">exe</a></td>
-<td><a href="https://app.keyboarddeck.space/apk">AppImage</a></td>
-<td><a href="https://app.keyboarddeck.space/apk">idk</a></td>
+<td><a href="https://github.com/FrancescoCaracciolo/KeyboardDeck-App/releases/download/0.0.1/KeyboardDeck-App-Android.apk">APK</a></td>
+<td><a href="https://github.com/FrancescoCaracciolo/KeyboardDeck-App/releases/download/0.0.1/ios-build.zip">IOS Build</a></td>
+<td><a href="https://github.com/FrancescoCaracciolo/KeyboardDeck-App/releases/download/0.0.1/KeyboardDeckApp-Installer.exe">Exe Installer</a></td>
+<td><a href="https://github.com/FrancescoCaracciolo/KeyboardDeck-App/releases/download/0.0.1/KeyboardDeck-App.AppImage">AppImage</a></td>
+<td>No Build provided, <a href="https://github.com/FrancescoCaracciolo/KeyboardDeck-App/wiki/Build-from-source">build it yourself</a></td>
 </tr>
 <tr>
 <td></td>
 <td></td>
-<td></td>
-<td></td>
+<td><a href="https://github.com/FrancescoCaracciolo/KeyboardDeck-App/releases/download/0.0.1/KeyboardDeck-App.msix">MSIX (You have to install the certificate)</a></td>
+<td><a href="https://github.com/FrancescoCaracciolo/KeyboardDeck-App/releases/download/0.0.1/KeyboardDeckApp-Linux-Executable.zip">Executable</a></td>
 <td></td>
 </tr>
 <tr>
 <td></td>
 <td></td>
+<td><a href="https://github.com/FrancescoCaracciolo/KeyboardDeck-App/releases/download/0.0.1/KeyboardDeckApp-Windows-Executable.zip">Executable</a></td>
 <td></td>
 <td></td>
 </tr>
@@ -60,13 +62,13 @@ Keyboard deck is a simple application that supports **Windows, Mac OS, Linux, An
 </thead>
 <tbody>
 <tr>
-<td><a href="https://app.keyboarddeck.space/apk">exe</a></td>
-<td><a href="https://app.keyboarddeck.space/apk">AppImage</a></td>
-<td><a href="https://app.keyboarddeck.space/apk">idk</a></td>
+<td><a href="https://github.com/FrancescoCaracciolo/KeyboardDeck-Server/releases/download/0.0.1/KeyboardDeckServer-Installer.exe">Exe Installer</a></td>
+<td><a href="https://github.com/FrancescoCaracciolo/KeyboardDeck-Server/releases/download/0.0.1/KeyboardDeck-Server.AppImage">AppImage</a></td>
+<td>No build provided</td>
 </tr>
 <tr>
-<td></td>
-<td></td>
+<td><a href="https://github.com/FrancescoCaracciolo/KeyboardDeck-Server/releases/download/0.0.1/Keyboarddeck-Server-Portable.exe">Exe Portable</a></td>
+<td><a href="https://github.com/FrancescoCaracciolo/KeyboardDeck-Server/releases/download/0.0.1/KeyboardDeck-Server0.0.1.Linux.Executable.1">Executable</a></td>
 <td></td>
 </tr>
 <tr>
